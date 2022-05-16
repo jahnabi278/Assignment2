@@ -19,6 +19,10 @@ spring:
           uri: lb://ECOM-PRODUCT-SERVICE
           predicates:
            - Path=/ecom/**
+        - id: email-service
+          uri: lb://EMAIL-SERVICE
+          predicates:
+           - Path=/api/**
     
 eureka:
   client:
