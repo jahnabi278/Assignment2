@@ -35,7 +35,7 @@ public class ProductController {
 		if (restTemplate == null) {
 			restTemplate = new RestTemplate();
 		}
-		ResponseEntity<String> sys = restTemplate.postForEntity("http://'ecom-product-service':8989/api/sendMail",
+		ResponseEntity<String> sys = restTemplate.postForEntity("http://ECOM-PRODUCT-SERVICE:8989/api/sendMail",
 				emailDeatails, String.class);
 		return sys;
 	}
