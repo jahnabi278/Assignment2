@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
@@ -33,16 +34,20 @@ public class ProductController {
 		if (restTemplate == null) {
 			restTemplate = new RestTemplate();
 		}
-		ResponseEntity<String> sys = restTemplate.postForEntity("http://EMAIL-SERVICE:8989/api/sendMail",
+		ResponseEntity<String> sys = restTemplate.postForEntity("http://localhost:8989/api/sendMail",
 				emailDeatails, String.class);
 		return sys;
 	}
-	private ResponseEntity<String> createAndSendProductDetails(Product product) throws Exception {
+	private ResponseEntity<String> createAndSendProductDetails(Product product) {
 		EmailDetails emailDetails = new EmailDetails();
 		ObjectMapper mapper = new ObjectMapper();
-		emailDetails.setMsgBody(mapper.writeValueAsString(product));
+		try {
+			emailDetails.setMsgBody(mapper.writeValueAsString(product));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 		emailDetails.setRecipient("jahnabisharma1996@gmail.com");
-		emailDetails.setSubject("Email Details");
+		emailDetails.setSubject("Product Details");
 		ResponseEntity<String> response = callmeforCreateProduct(emailDetails);
 		return response;
 	}
