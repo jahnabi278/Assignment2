@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "7c769a98-b0c6-40ad-bc06-1d0331dbd4f8",
+		"name": "product-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"productName\":\"chair\",\r\n\t\"product_big_Image\":\"xyz\",\r\n\t\"product_thumb_nail\":\"hggsjkhjbdj\",\r\n\t\"product_description\":\"nice\",\r\n\t\"product_short_decription\":\"good\",\r\n\t\"product_ratings\":5,\r\n    \"price\":900.00,\r\n\t\"isActive\":true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8989/ecom",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"ecom"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"product_name\":\"chair\",\r\n\t\"product_big_Image\":\"xyz\",\r\n\t\"product_thumb_nail\":\"hggsjkhjbdj\",\r\n\t\"product_description\":\"nice\",\r\n\t\"product_short_decription\":\"good\",\r\n\t\"product_ratings\":5,\r\n    \"price\":900.00,\r\n\t\"isActive\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8989/ecom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"ecom"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 16 May 2022 10:39:37 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errorCode\": 200,\n    \"errorMessage\": \"Save successful\"\n}"
+				}
+			]
+		},
+		{
+			"name": "getByname",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8989/ecom/name/chair",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"ecom",
+						"name",
+						"chair"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "getByname",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8989/ecom/name/chair",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"ecom",
+								"name",
+								"chair"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 16 May 2022 11:11:26 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"product_id\": \"6282314c7526e20b5433f1b9\",\n        \"productName\": \"chair\",\n        \"product_big_Image\": \"xyz\",\n        \"product_thumb_nail\": \"hggsjkhjbdj\",\n        \"product_description\": \"nice\",\n        \"product_short_decription\": \"good\",\n        \"product_ratings\": 5,\n        \"price\": 900,\n        \"isActive\": true\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "getByid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8989/ecom/6281e61d8fe6b651b717bb95",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"ecom",
+						"6281e61d8fe6b651b717bb95"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "getByid",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8989/ecom/6281e61d8fe6b651b717bb95",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"ecom",
+								"6281e61d8fe6b651b717bb95"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 16 May 2022 10:40:32 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"product_id\": \"6281e61d8fe6b651b717bb95\",\n    \"product_name\": \"chair\",\n    \"product_big_Image\": \"xyz\",\n    \"product_thumb_nail\": \"hggsjkhjbdj\",\n    \"product_description\": \"nice\",\n    \"product_short_decription\": \"good\",\n    \"product_ratings\": 5,\n    \"price\": 900,\n    \"isActive\": true\n}"
+				}
+			]
+		}
+	]
+}

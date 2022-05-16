@@ -1,0 +1,32 @@
+server:
+  port: 8989
+spring:
+  application:
+    name: GATEWAY-SERVICE
+
+  cloud:
+    gateway:
+      routes:
+        - id: pensioner-detail-service
+          uri: lb://PENSIONER-DETAIL-SERVICE
+          predicates:
+            - Path=/pensioner/**
+        - id: email-service
+          uri: lb://EMAIL-SERVICE
+          predicates:
+            - Path=/api/**
+        - id: ecom-product-service
+          uri: lb://ECOM-PRODUCT-SERVICE
+          predicates:
+           - Path=/ecom/**
+    
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+  instance:
+    hostname: localhost
+    
