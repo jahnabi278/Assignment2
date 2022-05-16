@@ -7,14 +7,6 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: pensioner-detail-service
-          uri: lb://PENSIONER-DETAIL-SERVICE
-          predicates:
-            - Path=/pensioner/**
-        - id: email-service
-          uri: lb://EMAIL-SERVICE
-          predicates:
-            - Path=/api/**
         - id: ecom-product-service
           uri: lb://ECOM-PRODUCT-SERVICE
           predicates:

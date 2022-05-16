@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
@@ -35,7 +33,7 @@ public class ProductController {
 		if (restTemplate == null) {
 			restTemplate = new RestTemplate();
 		}
-		ResponseEntity<String> sys = restTemplate.postForEntity("http://ECOM-PRODUCT-SERVICE:8989/api/sendMail",
+		ResponseEntity<String> sys = restTemplate.postForEntity("http://EMAIL-SERVICE:8989/api/sendMail",
 				emailDeatails, String.class);
 		return sys;
 	}
