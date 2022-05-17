@@ -1,6 +1,8 @@
 package com.example.demo;
 
 public class ErrorMessages {
+	private ErrorMessages() {
+	}
 
 	public static final String SAVE_SUCCESSFUL = "Save successful";
 	public static final String DELETE_SUCCESSFUL = "Delete successful";

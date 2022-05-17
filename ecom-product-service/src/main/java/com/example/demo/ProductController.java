@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.demo.dto.ProductDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -21,11 +22,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ProductController {
 	@Autowired
 	ProductService productService;
+	@Autowired
 	RestTemplate restTemplate;
 
 	@PostMapping
-	public Result createProduct(@RequestBody Product product) throws Exception {
-		Result result = productService.saveProduct(product);
+	public Result createProduct(@RequestBody Product product) {
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setActive(product.getisActive());
+		productDTO.setPrice(product.getPrice());
+		productDTO.setProductBigImage(product.getProductBigImage());
+		productDTO.setProductDescription(product.getProductDescription());
+		productDTO.setProductId(product.getProductId());
+		productDTO.setProductRatings(product.getProductRatings());
+		productDTO.setProductShortDecription(product.getProductShortDecription());
+		productDTO.setProductThumbNail(product.getProductThumbNail());
+		productDTO.setProductName(product.getProductName());
+
+		Result result = productService.saveProduct(productDTO);
 		createAndSendProductDetails(product);
 		return result;
 	}
@@ -34,10 +47,9 @@ public class ProductController {
 		if (restTemplate == null) {
 			restTemplate = new RestTemplate();
 		}
-		ResponseEntity<String> sys = restTemplate.postForEntity("http://localhost:8989/api/sendMail",
-				emailDeatails, String.class);
-		return sys;
+		return restTemplate.postForEntity("http://localhost:8989/api/sendMail", emailDeatails, String.class);
 	}
+
 	private ResponseEntity<String> createAndSendProductDetails(Product product) {
 		EmailDetails emailDetails = new EmailDetails();
 		ObjectMapper mapper = new ObjectMapper();
@@ -48,31 +60,35 @@ public class ProductController {
 		}
 		emailDetails.setRecipient("jahnabisharma1996@gmail.com");
 		emailDetails.setSubject("Product Details");
-		ResponseEntity<String> response = callmeforCreateProduct(emailDetails);
-		return response;
+		return callmeforCreateProduct(emailDetails);
 	}
 
 	@GetMapping("/name/{productName}")
-	public List<Product> getByProductName(@PathVariable String productName) throws Exception {
+	public List<Product> getByProductName(@PathVariable String productName) {
 		List<Product> listOfProduct = productService.getByProductName(productName);
 		createAndSendListOfProductDetails(listOfProduct);
 		return listOfProduct;
 	}
 
-	private ResponseEntity<String> createAndSendListOfProductDetails(List<Product> listOfProduct) throws Exception {
+	private ResponseEntity<String> createAndSendListOfProductDetails(List<Product> listOfProduct) {
 		EmailDetails emailDetails = new EmailDetails();
 		ObjectMapper mapper = new ObjectMapper();
-		emailDetails.setMsgBody(mapper.writeValueAsString(listOfProduct));
+		try {
+			emailDetails.setMsgBody(mapper.writeValueAsString(listOfProduct));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 		emailDetails.setRecipient("jahnabisharma1996@gmail.com");
 		emailDetails.setSubject("Email Details");
-		ResponseEntity<String> response = callmeforCreateProduct(emailDetails);
-		return response;
+		return callmeforCreateProduct(emailDetails);
 	}
 
 	@GetMapping("/{id}")
-	Optional<Product> getUser(@PathVariable String id) throws Exception {
+	public Optional<Product> getUser(@PathVariable String id) {
 		Optional<Product> product = productService.getById(id);
-		createAndSendProductDetails(product.get());
+		if (product.isPresent()) {
+			createAndSendProductDetails(product.get());
+		}
 		return product;
 	}
 

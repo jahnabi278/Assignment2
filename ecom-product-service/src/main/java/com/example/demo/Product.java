@@ -1,27 +1,22 @@
 package com.example.demo;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document(collection = "products")
 public class Product {
-	@Id
-	private String product_id;
+	private String productId;
 	private String productName;
-	private String product_big_Image;
-	private String product_thumb_nail;
-	private String product_description;
-	private String product_short_decription;
-	private int product_ratings;
+	private String productBigImage;
+	private String productThumbNail;
+	private String productDescription;
+	private String productShortDecription;
+	private int productRatings;
 	private double price;
 	private boolean isActive;
 
-	public String getProduct_id() {
-		return product_id;
+	public String getProductId() {
+		return productId;
 	}
 
-	public void setProduct_id(String product_id) {
-		this.product_id = product_id;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
 	public String getProductName() {
@@ -32,44 +27,44 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public String getProduct_big_Image() {
-		return product_big_Image;
+	public String getProductBigImage() {
+		return productBigImage;
 	}
 
-	public void setProduct_big_Image(String product_big_Image) {
-		this.product_big_Image = product_big_Image;
+	public void setProductBigImage(String productBigImage) {
+		this.productBigImage = productBigImage;
 	}
 
-	public String getProduct_thumb_nail() {
-		return product_thumb_nail;
+	public String getProductThumbNail() {
+		return productThumbNail;
 	}
 
-	public void setProduct_thumb_nail(String product_thumb_nail) {
-		this.product_thumb_nail = product_thumb_nail;
+	public void setProductThumbNail(String productThumbNail) {
+		this.productThumbNail = productThumbNail;
 	}
 
-	public String getProduct_description() {
-		return product_description;
+	public String getProductDescription() {
+		return productDescription;
 	}
 
-	public void setProduct_description(String product_description) {
-		this.product_description = product_description;
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
 	}
 
-	public String getProduct_short_decription() {
-		return product_short_decription;
+	public String getProductShortDecription() {
+		return productShortDecription;
 	}
 
-	public void setProduct_short_decription(String product_short_decription) {
-		this.product_short_decription = product_short_decription;
+	public void setProductShortDecription(String productShortDecription) {
+		this.productShortDecription = productShortDecription;
 	}
 
-	public int getProduct_ratings() {
-		return product_ratings;
+	public int getProductRatings() {
+		return productRatings;
 	}
 
-	public void setProduct_ratings(int product_ratings) {
-		this.product_ratings = product_ratings;
+	public void setProductRatings(int productRatings) {
+		this.productRatings = productRatings;
 	}
 
 	public double getPrice() {

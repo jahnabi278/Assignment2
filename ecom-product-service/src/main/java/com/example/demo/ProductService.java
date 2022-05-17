@@ -6,13 +6,15 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.ProductDTO;
+
 @Service
 public class ProductService {
 	@Autowired
 	ProductMongoRepository repo;
 
-	public Result saveProduct(Product product) {
-		repo.save(product);
+	public Result saveProduct(ProductDTO productDTO) {
+		repo.save(productDTO);
 		return new Result(200, ErrorMessages.SAVE_SUCCESSFUL);
 	}
 
